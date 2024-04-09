@@ -1,0 +1,43 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Category
+@model CategoryUpdateVM
+
+<div class="container mt-5">
+    <h1 style="text-align:center">Update</h1>
+    @if (Model.Image != null)
+    {
+        <div class="d-flex flex-wrap">
+
+            <div class="image-delete mx-1">
+                <img style="width:40%" class="product-image" src="~/~~assets/images/@Model.Image" alt="Product Image">
+            </div>
+
+
+        </div>
+    }
+
+    <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+        <div class="form-group mt-3">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" required />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+
+            @for (int i = 0; i < Model.Brands.Count(); i++)
+            {
+                <input asp-for="Brands[i].Value" type="hidden" class="form-control">
+                <input asp-for="Brands[i].Selected" /> @Model.Brands[i].Text
+
+            }
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Photo">Image</label>
+            <input asp-for="Photo" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <a class="btn btn-dark" asp-action="Index">Back</a>
+    </form>
+</div>

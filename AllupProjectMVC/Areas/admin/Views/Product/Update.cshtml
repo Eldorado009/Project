@@ -1,0 +1,94 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Product
+@model ProductUpdateVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    .product-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+    }
+    .active-image {
+        border: 3px solid greenyellow;
+    }
+    .image-delete {
+        position: relative;
+    }
+        .image-delete button {
+            position: absolute;
+            left: 40px;
+            top: 58px;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+        .image-delete:hover button {
+            position: absolute;
+            left: 40px;
+            top: 58px;
+            opacity: 1;
+        }
+        .image-delete:hover img {
+            opacity: 0.5;
+        }
+</style>
+
+<div class="container mt-5">
+    @if (Model.Images.Count() != 0)
+    {
+        <div class="d-flex flex-wrap">
+            @foreach (var item in Model.Images)
+            {
+                <div class="image-delete mx-1">
+                    <img class="product-image @(item.IsMain ? "active-image": "")" src="~/~~assets/images/product/@item.Image" alt="Product Image">
+                    @if (!item.IsMain)
+                    {
+                        <button data-id="@item.Id" class="btn btn-danger btn-sm">Delete</button>
+                    }
+                </div>
+
+            }
+        </div>
+
+    }
+
+    <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+            <div class="form-group">
+            </div>
+                <label asp-for="Price">Price</label>
+                <input type="number" step="any" asp-for="Price" class="form-control" />
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
+        <div class="form-group">
+            <label asp-for="CategoryId">Categories</label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.categories" class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Photos">Image</label>
+            <input asp-for="Photos" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <a class="btn btn-light" asp-action="Index">Back</a>
+    </form>
+</div>
+
+        

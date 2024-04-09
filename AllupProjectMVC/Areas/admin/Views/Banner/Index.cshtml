@@ -1,0 +1,47 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Banner
+@model BannerVM
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+	<h1 class="text-center mt-3 mb-3">Banner</h1>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Image
+					</th>
+
+					<th>
+						Created Date
+					</th>
+					<th>
+						Operations
+					</th>
+
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td style="white-space:normal">
+						<img style="width:300px; height:100px; border-radius:0" src="~/~~assets/images/@Model.Image" alt="image" />
+
+					</td>
+
+					<th>
+						@Model.CreatedDate.ToString("dd/MM/yyyy")
+					</th>
+					<td>
+						<a class="btn btn-info" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger delete-btn">Delete</a>
+						<a class="btn btn-primary" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning">Update</a>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+	</div>
+</div>

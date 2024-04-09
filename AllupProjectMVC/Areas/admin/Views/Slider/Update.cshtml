@@ -1,0 +1,37 @@
+﻿@model SliderUpdateVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div style="margin-right:100px" class="container mt-5">
+
+    <div style="width:400px; height:300px;" class="image">
+        <img src="~/~~assets/images/@Model.Image" style="width:100%" />
+    </div>
+
+    <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+
+        <div class="form-group my-3">
+            <label asp-for="Title">New Title</label>
+            <input asp-for="Title" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group my-3">
+            <label asp-for="Title2">New Title2</label>
+            <input asp-for="Title2" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Title2"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Description">New Description</label>
+            <input asp-for="Description" type="text" class="form-control">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Photo">Image</label>
+            <input asp-for="Photo" type="file" class="form-control my-3">
+            <span class="text-danger" asp-validation-for="Photo"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mr-4">Submit</button>
+        <a class="btn btn-dark" asp-action="Index">Back</a>
+    </form>
+</div>

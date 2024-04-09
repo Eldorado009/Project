@@ -1,0 +1,83 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Account
+@model List<UserVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mt-3 mb-3">Accounts</h1>
+    @if (User.IsInRole("SuperAdmin"))
+    {
+        <a class="btn btn-success" asp-action="AddRoleToUser">Add Role</a>
+        <a class="btn btn-info" asp-action="RemoveRoleFromUser">Remove Role</a>
+
+    }
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        FullName
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Role
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @user.UserName
+                        </td>
+                        <td>
+                            @user.Email
+                        </td>
+                        <td>
+                            @user.UserName
+                        </td>
+
+                        <td>
+                            @foreach (var name in user.RoleName)
+                            {
+
+                                <span> @name</span>
+
+                            }
+                        </td>
+
+                        <td>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+
+                                bool hasNonSuperAdminRole = !user.RoleName.Any(role => role.Contains("SuperAdmin"));
+
+                                if (hasNonSuperAdminRole)
+                                {
+                                    <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                }
+
+                            }
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

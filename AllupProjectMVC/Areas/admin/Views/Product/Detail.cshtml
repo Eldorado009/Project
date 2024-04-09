@@ -1,0 +1,77 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@section css {
+    <style>
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        a {
+            font-size: 16px !important;
+            padding: 10px 21px !important;
+        }
+
+        input {
+            font-size: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        textarea {
+            height: 140px !important;
+            font-size: 17px !important;
+        }
+
+        .active-image {
+            border: 5px solid #228B22;
+        }
+
+        img {
+            width: 25%;
+            height: 25%;
+        }
+    </style>
+}
+
+<div class="container mt-5">
+    <h1>Details</h1>
+    @if (Model.Images.Count() != 0)
+    {
+        foreach (var item in Model.Images)
+        {
+            <img class="product-image @(item.IsMain ? "active-image": "")" src="~/~~assets/images/product/@item.Image" alt="Product Image">
+        }
+    }
+
+    <div class="product-info">
+        <div class="form-group mt-3">
+            <label for="formFile" class="form-label my-2">Product Name</label>
+            <input class="form-control" id="customFile" disabled asp-for="@Model.Name">
+        </div>
+        <div class="form-group mt-3">
+            <label for="formFile" class="form-label my-2">Description</label>
+            <textarea class="form-control" id="customFile" disabled asp-for="@Model.Description"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label for="formFile" class="form-label my-2">Price</label>
+            <input class="form-control" id="customFile" disabled asp-for="@Model.Price $">
+        </div>
+        <div class="form-group mt-3">
+            <label for="formFile" class="form-label my-2">Category</label>
+            <input class="form-control" id="customFile" disabled asp-for="@Model.Category.Name">
+        </div>
+
+
+        <div class="mt-3">
+            <label for="formFile" class="form-label my-2">Created Date</label><br>
+            @Model.CreatedDate.ToString("dd/MM/yyyy")
+        </div>
+
+        <div class="back mt-2 mb-3">
+            <a class="btn btn-dark text-white" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>

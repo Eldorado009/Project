@@ -1,0 +1,598 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!--====== Slider Part Start ======-->
+
+<section class="slider-area slider-3">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="slider-active mt-30">
+                    @foreach (var slider in Model.Sliders)
+                    {
+                        <div class="single-slider">
+                            <div class="slider-image">
+                                <img src="~/uploads/sliders/@slider.Image" alt="slider">
+                            </div>
+                            <div class="slider-content-wrapper">
+                                <div class="slider-content">
+                                    <h1 data-animation="bounceInDown" data-delay="0.2s" class="main-title "><span>@slider.Title </span> @slider.Title2</h1>
+                                    <p data-animation="bounceInDown" data-delay="0.5s">@slider.Description <br> Fulldive’s all-in-one virtual reality platform</p>
+                                    <a data-animation="zoomIn" data-delay="0.8s" class="main-btn " href="shop-4-column.html">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    } <!-- single slider -->
+                    
+                </div>
+            </div>
+            <div class="col-lg-4">
+                @foreach (var banner in Model.Banners)
+                {
+                    <div class="slider-banner mt-30">
+                        <a href="shop-4-column.html"><img src="~assets/images/@banner.Image" alt="banner"></a>
+                    </div> 
+                    <div class="slider-banner mt-30">
+                        <a href="shop-4-column.html"><img src="~assets/images/@banner.Image" alt="banner"></a>
+                    </div> 
+                } <!-- slider banner -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+
+</section>
+
+<!--====== Slider Part Ends ======-->
+<!--====== Features Banner Part Start ======-->
+
+<div class="features-banner-area pt-95">
+    <div class="container-fluid custom-container">
+        <div class="features-banner-wrapper d-flex flex-wrap">
+            @foreach (var feature in Model.Features)
+            {
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="~/~assets/images/@feature.IconFile" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">@feature.Title</h3>
+                        <p>@feature.Description</p>
+                    </div>
+                </div>
+            } <!-- single features banner -->
+           
+        </div> <!-- features banner wrapper -->
+    </div> <!-- container -->
+</div>
+
+<!--====== Features Banner Part Ends ======-->
+<!--====== Product Part Start ======-->
+
+<section class="product-area pt-100">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="product-menu pb-30">
+                    <ul class="nav justify-content-center" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="active" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="true">New Arrival</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a id="bestseller-tab" data-toggle="tab" href="#bestseller" role="tab" aria-controls="bestseller" aria-selected="false">Bestseller</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a id="featured-tab" data-toggle="tab" href="#featured" role="tab" aria-controls="featured" aria-selected="false">Featured</a>
+                        </li>
+                    </ul>
+                </div> <!-- product menu -->
+            </div>
+        </div> <!-- row -->
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+                <div class="product-items">
+                    <div class="row product-active">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-lg-2">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a href="single-product.html">
+                                            <img class="first-image" src="@product.Images" alt="product">
+                                            <img class="second-image" src="@product.Images" alt="product">
+                                        </a>
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@product.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">@product.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+                            </div>
+                        }
+                    </div> <!-- row -->
+                </div> <!-- product items -->
+            </div>
+            <div class="tab-pane fade" id="bestseller" role="tabpanel" aria-labelledby="bestseller-tab">
+                <div class="product-items">
+                    <div class="row product-active">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-lg-2">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a href="single-product.html">
+                                            <img class="first-image" src="~/~assets/images/product/@product.Images" alt="product">
+                                            <img class="second-image" src="~/~assets/images/product/@product.Images" alt="product">
+                                        </a>
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@product.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">@product.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a href="single-product.html">
+                                            <img class="first-image" src="~/~assets/images/product/product-10.jpg" alt="product">
+                                            <img class="second-image" src="~/~assets/images/product/product-11.jpg" alt="product">
+                                        </a>
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">Winter Jacket eu accumsan massa facili originals Kaval Wind breaker</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">€23.90</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+                            </div>
+                        }
+                        
+                    </div> <!-- row -->
+                </div> <!-- product items -->
+            </div>
+            <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+                <div class="product-items">
+                    <div class="row product-active">
+                        <div class="col-lg-2">
+                             <!-- single product -->
+
+                             <!-- single product -->
+                        </div>
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-lg-2">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a href="single-product.html">
+                                            <img class="first-image" src="~/~assets/images/product/@product.Images" alt="product">
+                                            <img class="second-image" src="~/~assets/images/product/@product.Images" alt="product">
+                                        </a>
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                        <span class="discount-product">-12%</span>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@product.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="regular-price ">€23.90</span>
+                                            <span class="price-sale">@product.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+
+                                
+                                     <!-- single product -->
+                            </div>
+                        }
+                        </div>
+                        
+                    </div> <!-- row -->
+                </div> <!-- product items -->
+            </div>
+        </div> <!-- tab content -->
+    </div> <!-- container -->
+    
+</section>
+
+<!--====== Product Part Ends ======-->
+<!--====== Banner Part Start ======-->
+
+<div class="banner-area pt-70">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            @foreach (var banner in Model.Banners)
+            {
+                <div class="col-md-6">
+                    <div class="banner-image banner-2">
+                        <a href="shop-4-column.html"><img src="~/~assets/images/@banner.Image" alt="banner"></a>
+                    </div> <!-- banner image -->
+                </div>
+            }
+            
+        </div> <!-- row -->
+    </div> <!-- container -->
+</div>
+
+<!--====== Banner Part Ends ======-->
+<!--====== Product Part Start ======-->
+
+<section class="product-area pt-100">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-lg-12">
+                @foreach (var category in Model.Categories)
+                {
+                    <div class="product-menu pb-30">
+                        <ul class="nav justify-content-center" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="active" id="computer-tab" data-toggle="tab" href="#computer" role="tab" aria-controls="computer" aria-selected="true">@category.Name</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a id="smartphone-tab" data-toggle="tab" href="#smartphone" role="tab" aria-controls="smartphone" aria-selected="false">@category.Name</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a id="game-tab" data-toggle="tab" href="#game" role="tab" aria-controls="game" aria-selected="false">@category.Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                } <!-- product menu -->
+            </div>
+        </div> <!-- row -->
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="computer" role="tabpanel" aria-labelledby="new-tab">
+                <div class="product-items">
+                    <div class="row product-active">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-lg-2">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">
+                                        <a href="single-product.html">
+                                            <img class="first-image" src="~/~assets/images/product/@product.Images" alt="product">
+                                            <img class="second-image" src="~/~assets/images/product/@product.Images alt="product">
+                                        </a>
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@product.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">@product.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+                            </div>
+                        }
+                    </div> <!-- row -->
+                </div> <!-- product items -->
+            </div>
+            
+            
+        </div> <!-- tab content -->
+    </div> <!-- container -->
+</section>
+
+<!--====== Product Part Ends ======-->
+<!--====== Special Category Part Start ======-->
+
+<section class="special-category-area pt-50">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="special-product-2 mt-50">
+                    <div class="special-product-countdown-2 mt-50">
+                        <h2 class="special-title">Deal of the week</h2>
+                        <div data-countdown="2021/12/19"></div>
+                    </div> <!-- special product countdown -->
+                    <div class="special-product-gallery-2">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <div class="product-gallery-image-2">
+                                <div class="single-products-image">
+                                    <a href="#">
+                                        <img src="~/~assets/images/special-products/@category.Image" alt="products">
+                                    </a>
+                                </div>
+                                <div class="single-products-image">
+                                    <a href="#">
+                                        <img src="~/~assets/images/special-products/@category.Image" alt="products">
+                                    </a>
+                                </div>
+                                <div class="single-products-image">
+                                    <a href="#">
+                                        <img src="~/~assets/images/special-products/@category.Image" alt="products">
+                                    </a>
+                                </div>
+                                <div class="single-products-image">
+                                    <a href="#">
+                                        <img src="~/~assets/images/special-products/@category.Image" alt="products">
+                                    </a>
+                                </div>
+                                <div class="single-products-image">
+                                    <a href="#">
+                                        <img src="~/~assets/images/special-products/@category.Image" alt="products">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        
+                        <h2 class="product-title"><a href="#">Calvin Klein Jeans...</a></h2>
+                        <ul class="products-rating">
+                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                        </ul>
+                        <div class="product-price-and-cart d-sm-flex align-items-center">
+                            <div class="product-price">
+                                <span class="price-sale">€21.03</span>
+                                <span class="regular-price">€23.90</span>
+                            </div>
+                            <div class="product-cart">
+                                <a class="main-btn main-btn-2" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- special product -->
+            </div>
+            <div class="col-lg-8">
+                <div class="row justify-content-center mt-50">
+                    <div class="col-lg-6">
+                        <div class="section-title text-center pb-30">
+                            <h2 class="title">Featured Categories</h2>
+                        </div>
+                    </div>
+                </div> <!-- row -->
+                <div class="row category-active-2">
+                    <div class="col-lg-2">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <div class="single-category text-center">
+                                <a target="_blank" href="shop-left-sidebar.html">
+                                    <img src="~/~assets/images/@category.Image" alt="category">
+                                    <p>@category.Name</p>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div> <!-- row -->
+            </div>
+        </div>
+    </div> <!-- container -->
+</section>
+
+<!--====== Special Category Part Ends ======-->
+<!--====== Blog Part Start ======-->
+
+<section class="blog-area pt-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-title text-center pb-30">
+                    <h2 class="title">From Our Blog </h2>
+                </div>
+            </div>
+        </div> <!-- row -->
+        <div class="row blog-active">
+            @foreach (var blog in Model.Blogs)
+            {
+                <div class="col-lg-4">
+                    <div class="single-blog">
+                        <div class="blag-image">
+                            <a href="blog-single-left-sidebar.html"><img src="~/~assets/images/@blog.Image" alt="Blog"></a>
+                            <p class="meta-date">
+                                <span class="day">05</span>
+                                <span class="month">Dec</span>
+                            </p>
+                        </div>
+                        <div class="blag-content">
+                            <h2 class="blog-title"><a href="blog-single-left-sidebar.html">@blog.Name</a></h2>
+                            <p>@blog.Description</p>
+                        </div>
+                    </div> <!-- single blog -->
+                </div>
+            }
+            
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<!--====== Blog Part Ends ======-->
+<!--====== Brand Part Start ======-->
+
+<div class="brand-area pt-80 pb-80">
+    <div class="container-fluid custom-container">
+        <div class="row brand-active">
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-1.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-2.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-3.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-4.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-5.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-6.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+            <div class="col-lg-2">
+                <div class="single-brand">
+                    <a href="#">
+                        <img src="~/~assets/images/brand/brand-4.jpg" alt="brand">
+                    </a>
+                </div> <!-- single brand -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</div>
+
+<!--====== Brand Part Ends ======-->
+<!--====== Testimonial Part Start ======-->
+
+<section class="testimonial-area bg_cover pt-100 pb-100" style="background-image: url(~/~assets/images/bg_testimonial.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="testimonial-active">
+                    <div class="single-testimonial d-sm-flex">
+                        <div class="testimonial-author">
+                            <img src="~/~assets/images/author-1.png" alt="author">
+                        </div>
+                        <div class="testimonial-content media-body">
+                            <p> An has feugiat vivendum, ad vix tacimates accusamus, cum commune lucilius no. Sit at alia civibus indoctum, ea mel regione percipit adipisci. Per modus nostrum vituperata no, eam ne magna solum constituam.</p>
+                            <h4 class="author-name">John Doe</h4>
+                            <span class="designation">email@yourwebsitename.com</span>
+                        </div>
+                    </div> <!-- single testimonial -->
+                    <div class="single-testimonial d-sm-flex">
+                        <div class="testimonial-author">
+                            <img src="~/~assets/images/author-1.png" alt="author">
+                        </div>
+                        <div class="testimonial-content media-body">
+                            <p> An has feugiat vivendum, ad vix tacimates accusamus, cum commune lucilius no. Sit at alia civibus indoctum, ea mel regione percipit adipisci. Per modus nostrum vituperata no, eam ne magna solum constituam.</p>
+                            <h4 class="author-name">John Doe</h4>
+                            <span class="designation">email@yourwebsitename.com</span>
+                        </div>
+                    </div> <!-- single testimonial -->
+                    <div class="single-testimonial d-sm-flex">
+                        <div class="testimonial-author">
+                            <img src="~/~assets/images/author-1.png" alt="author">
+                        </div>
+                        <div class="testimonial-content media-body">
+                            <p> An has feugiat vivendum, ad vix tacimates accusamus, cum commune lucilius no. Sit at alia civibus indoctum, ea mel regione percipit adipisci. Per modus nostrum vituperata no, eam ne magna solum constituam.</p>
+                            <h4 class="author-name">John Doe</h4>
+                            <span class="designation">email@yourwebsitename.com</span>
+                        </div>
+                    </div> <!-- single testimonial -->
+                </div> <!-- testimonial Active -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<!--====== Testimonial Part Ends ======-->
+<!--====== Newsletter Part Start ======-->
+
+<section class="newsletter-area pt-100 pb-100 bg_cover" style="background-image: url(~/~assets/images/bg-newletter.jpg)">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-lg-8">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Subscribe our newsletter</h2>
+                    <p>allup is a powerful eCommerce HTML Template</p>
+
+                    <div class="newsletter-forn">
+                        <form action="#">
+                            <input type="text" placeholder="Your Email address">
+                            <button class="main-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div> <!-- newsletter content -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<!--====== Newsletter Part Ends ======-->
+<!--====== Footer Part Start ======-->
+
+}

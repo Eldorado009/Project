@@ -1,0 +1,49 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Product
+@model ProductCreateVM
+@{
+    ViewData["Title"] = "Create";
+}
+@section css {
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+    </style>
+    }
+}
+<div class="container mt-5">
+    <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Price</label>
+            <input type="number" step="any" asp-for="Price" class="form-control" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId">Categories</label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.categories" class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Photos">Image</label>
+            <input asp-for="Photos" class="form-control">
+            <span class="text-danger" asp-validation-for="Photos"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <a class="btn btn-light" asp-action="Index">Back</a>
+    </form>
+</div>
+</div>

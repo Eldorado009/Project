@@ -1,0 +1,23 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Banner
+@model BannerUpdateVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div style="margin-right:100px" class="container mt-5">
+    <h1>Update</h1>
+    <form class="forms-sample" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Photo">Image</label>
+            <div class="image">
+                <img src="~/~~assets/images/@Model.Image" style="width:60%; height:60%" />
+                <input asp-for="Photo" class="form-control">
+                <span asp-validation-for="Photo"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Update</button>
+    </form>
+    <div class="back mt-3">
+        <a class="btn btn-info" asp-action="Index">Back</a>
+    </div>
+</div>

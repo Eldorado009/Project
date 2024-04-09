@@ -1,0 +1,54 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Category
+@model List<CategoryVM>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+	<h1 class="text-center mt-3 mb-3">Categories</h1>
+	<a class="btn btn-success text-white" asp-action="Create">Create</a>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Image
+					</th>
+					<th>
+						Name
+					</th>
+					<th>
+						Created Date
+					</th>
+
+					<th>
+						Operations
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var category in Model)
+				{
+					<tr>
+						<td class="py-1">
+							<img style="width:100px; height:100px" src="~/~~assets/images/@category.Image" alt="image" />
+						</td>
+						<td>
+							@category.Name
+						</td>
+						<td>
+							@category.CreatedDate.ToString("dd/MM/yyyy")
+						</td>
+						<td>
+							<a class=" btn btn-outline-info" asp-action="Detail" asp-route-id="@category.Id">Detail</a>
+							<a class="btn btn-outline-primary" asp-action="Update" asp-route-id="@category.Id">Update</a>
+							<form class="d-inline-block" method="post" asp-action="Delete" asp-route-id="@category.Id">
+								<button type="submit" class="btn btn-outline-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				}
+
+			</tbody>
+		</table>
+	</div>
+</div>

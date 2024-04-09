@@ -1,0 +1,37 @@
+﻿@using AllupProjectMVC.Areas.admin.ViewModels.Blog
+@model BlogUpdateVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container mt-5">
+    <h1>Update</h1>
+    <form class="forms-sample" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <div>
+                <textarea style="border-color:grey;" asp-for="Name" id="Name" cols="70"></textarea>
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            /div>
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <div>
+                    <textarea style="border-color:grey;" asp-for="Description" id="Text" cols="70"></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo">Image</label>
+                <div class="image">
+                    <img src="~/~~assets/images/@Model.Image" style="width:60%; height:60%" />
+                    <input asp-for="Photo" class="form-control">
+                    <span asp-validation-for="Photo"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Update</button>
+    </form>
+    <div class="back mt-3">
+        <a class="btn btn-info" asp-action="Index">Back</a>
+    </div>
+</div>
